@@ -5,6 +5,7 @@ class Company{
     public $name;
     public $location;
     public $tot_employees;
+    static public $tot_wages_comp=0;
 
     public function report(){
         if ($this->tot_employees == 0){
@@ -24,6 +25,7 @@ class Company{
         $this->name = $_name;
         $this->location = $_location;
         $this->tot_employees = $_tot_employees;
+        self::$tot_wages_comp+=($this->tot_employees*Company::$avg_wage);
 
     }
 
@@ -51,5 +53,6 @@ foreach ($companies as $company){
     $company-> totWage();
 }
 
-$month = readline("Inserisci mensilità");
-$company1 -> totWage($month);
+$month=(readline('inserisci mensilità: '));
+$company1->totWage($month);
+echo "Le aziende hanno speso in totale: ".Company::$tot_wages_comp."\n";
